@@ -27,6 +27,7 @@ export default function ConciliacionesForm() {
     dirtRoadPrice: 0, // precio de km en terracería
     totalKmPrice: 0, // El costo total de los kilometros ingresados mas los iniciales
     utility: 0, //utilidad
+    totalUtility: 0, //Suma de las ganancias totales en general (incluye la suma de 10% acarreo, 0.25 por km, diferencia de tarifa y la utilidad.)
   });
 
   //Para mañana debes crear la función en la que de acuerdo a los kilometros obtenidos, te de el precio de CTM (recuerda que debes aumentar al final el monto de 41.58 por las 2 horas iniciales, tanto pavimento como terraceria)
@@ -61,6 +62,8 @@ export default function ConciliacionesForm() {
 
   const getUtility = (v1, v2, v3, v4, v5) =>
     finalInfo.totalPrice - v1 - v2 - v3 - v4 - v5;
+
+  const getTotalUtility = (v1, v2, v3) => finalInfo.utility + v1 + v2 + v3;
 
   useEffect(() => {
     if (data.lengt !== 0) {
@@ -99,6 +102,11 @@ export default function ConciliacionesForm() {
         prevFinalInfo.transportPay,
         prevFinalInfo.rateDifference,
         prevFinalInfo.materialBank
+      ),
+      totalUtility: getTotalUtility(
+        prevFinalInfo.sutermPercentage,
+        prevFinalInfo.kmPay,
+        prevFinalInfo.rateDifference
       ),
       pavementPrice: data.pavementDistance * 7.25,
       dirtRoadPrice: data.dirtRoadDistance * 11.91,
@@ -157,6 +165,7 @@ export default function ConciliacionesForm() {
     finalInfo.dirtRoadPrice,
     finalInfo.totalKmPrice,
     finalInfo.utility,
+    finalInfo.totalUtility,
     data.price,
   ]);
 

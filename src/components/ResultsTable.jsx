@@ -9,45 +9,33 @@ export default function ResultsTable({ data, finalInfo }) {
   });
 
   return (
-    <section className="max-w-md mt-8 mx-auto">
+    <section className="max-w-xl mt-8 mx-auto">
       <Table>
-        {/* <Table.Head>
-          <Table.Row>
-            <Table.HeadCell>Sociedad</Table.HeadCell>
-            <Table.HeadCell>Material</Table.HeadCell>
-            <Table.HeadCell>M3</Table.HeadCell>
-            <Table.HeadCell>Precio</Table.HeadCell>
-            <Table.HeadCell>Pago Total</Table.HeadCell>
-            <Table.HeadCell>10% acarreo SUTERM</Table.HeadCell>
-            <Table.HeadCell>$0.25 x Km</Table.HeadCell>
-            <Table.HeadCell>Pago acarreo CTM</Table.HeadCell>
-            <Table.HeadCell>Diferencia de Tarifa</Table.HeadCell>
-            <Table.HeadCell>Material &#40;Costo Bancos&#41;</Table.HeadCell>
-            <Table.HeadCell>Utilidad</Table.HeadCell>
-          </Table.Row>
-        </Table.Head> */}
+        <Table.Head>
+          <Table.HeadCell></Table.HeadCell>
+          <Table.HeadCell></Table.HeadCell>
+          <Table.HeadCell>Lugar de entrega</Table.HeadCell>
+        </Table.Head>
         <Table.Body className="divide-x max-w-sm">
           <Table.Row className="bg-gray-200">
-            <Table.Cell className="font-medium whitespace-nowrap">
+            <Table.Cell className="font-bold whitespace-nowrap">
               Sociedad
             </Table.Cell>
             <Table.Cell className="bg-white">{data.company}</Table.Cell>
           </Table.Row>
           <Table.Row className="bg-gray-200">
-            <Table.Cell className="font-medium whitespace-nowrap">
+            <Table.Cell className="font-bold whitespace-nowrap">
               Material
             </Table.Cell>
             <Table.Cell className="bg-white">{data.materialName}</Table.Cell>
           </Table.Row>
           <Table.Row className="bg-gray-200">
-            <Table.Cell className="font-medium whitespace-nowrap">
-              M3
-            </Table.Cell>
+            <Table.Cell className="font-bold whitespace-nowrap">M3</Table.Cell>
             <Table.Cell className="bg-white">{data.cubicMeters}</Table.Cell>
           </Table.Row>
           <Table.Row className="bg-gray-200">
             {" "}
-            <Table.Cell className="font-medium whitespace-nowrap">
+            <Table.Cell className="font-bold whitespace-nowrap">
               Precio
             </Table.Cell>
             <Table.Cell className="bg-white">
@@ -55,7 +43,7 @@ export default function ResultsTable({ data, finalInfo }) {
             </Table.Cell>
           </Table.Row>
           <Table.Row className="bg-gray-200">
-            <Table.Cell className="font-medium whitespace-nowrap">
+            <Table.Cell className="font-bold whitespace-nowrap">
               Pago Total
             </Table.Cell>
             <Table.Cell className="bg-white">
@@ -63,23 +51,25 @@ export default function ResultsTable({ data, finalInfo }) {
             </Table.Cell>
           </Table.Row>
           <Table.Row className="bg-gray-200">
-            <Table.Cell className="font-medium whitespace-nowrap">
+            <Table.Cell className="font-bold whitespace-nowrap">
               10% acarreo SUTERM
             </Table.Cell>
-            <Table.Cell className="bg-white">
+            <Table.Cell className="">
               {formatNumber.format(finalInfo.sutermPercentage)}
             </Table.Cell>
+            <Table.Cell className="text-center">Tuxpan</Table.Cell>
           </Table.Row>
           <Table.Row className="bg-gray-200">
-            <Table.Cell className="font-medium whitespace-nowrap">
-              $0.25 x Km
+            <Table.Cell className="font-bold whitespace-nowrap">
+              $0.25 x Km &#40;{finalInfo.totalDistance}&#41;
             </Table.Cell>
-            <Table.Cell className="bg-white">
+            <Table.Cell className="">
               {formatNumber.format(finalInfo.kmPay)}
             </Table.Cell>
+            <Table.Cell className="text-center">Tuxpan</Table.Cell>
           </Table.Row>
           <Table.Row className="bg-gray-200">
-            <Table.Cell className="font-medium whitespace-nowrap">
+            <Table.Cell className="font-bold whitespace-nowrap">
               Pago acarreo CTM
             </Table.Cell>
             <Table.Cell className="bg-white">
@@ -87,16 +77,17 @@ export default function ResultsTable({ data, finalInfo }) {
             </Table.Cell>
           </Table.Row>
           <Table.Row className="bg-gray-200">
-            <Table.Cell className="font-medium whitespace-nowrap">
+            <Table.Cell className="font-bold whitespace-nowrap">
               Diferencia de Tarifa
             </Table.Cell>
-            <Table.Cell className="bg-white">
+            <Table.Cell className="">
               {formatNumber.format(finalInfo.rateDifference)}
             </Table.Cell>
+            <Table.Cell className="text-center">Tuxpan</Table.Cell>
           </Table.Row>
           <Table.Row className="bg-gray-200">
             {" "}
-            <Table.Cell className="font-medium whitespace-nowrap">
+            <Table.Cell className="font-bold whitespace-nowrap">
               Material &#40;Costo Bancos&#41;
             </Table.Cell>
             <Table.Cell className="bg-white">
@@ -104,11 +95,25 @@ export default function ResultsTable({ data, finalInfo }) {
             </Table.Cell>
           </Table.Row>
           <Table.Row className="bg-gray-200">
-            <Table.Cell className="font-medium whitespace-nowrap">
+            <Table.Cell className="font-bold whitespace-nowrap">
               Utilidad
             </Table.Cell>
-            <Table.Cell className="bg-white">
+            <Table.Cell className="">
               {formatNumber.format(finalInfo.utility)}
+            </Table.Cell>
+            <Table.Cell className="text-center">Tuxpan</Table.Cell>
+          </Table.Row>
+          <Table.Row className="">
+            <Table.Cell className="font-bold whitespace-nowrap"></Table.Cell>
+            <Table.Cell className=""></Table.Cell>
+            <Table.Cell className="text-center"></Table.Cell>
+          </Table.Row>
+          <Table.Row className="">
+            <Table.Cell className="font-bold whitespace-nowrap">
+              Suma de Ganancias totales en General:
+            </Table.Cell>
+            <Table.Cell className="">
+              {formatNumber.format(finalInfo.totalUtility)}
             </Table.Cell>
           </Table.Row>
         </Table.Body>
