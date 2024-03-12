@@ -30,7 +30,7 @@ export default function ConciliacionesForm() {
     totalUtility: 0, //Suma de las ganancias totales en general (incluye la suma de 10% acarreo, 0.25 por km, diferencia de tarifa y la utilidad.)
   });
 
-  //Para mañana debes crear la función en la que de acuerdo a los kilometros obtenidos, te de el precio de CTM (recuerda que debes aumentar al final el monto de 41.58 por las 2 horas iniciales, tanto pavimento como terraceria)
+  // Queda pendiente obtener exactamente el porcentaje del pago de acarreo de materiales
 
   const handleShowTable = () => setShowTable(!showTable);
 
@@ -46,12 +46,10 @@ export default function ConciliacionesForm() {
 
   const getTotalCTM = (amount) => 566.61 * amount;
 
-  const getTransportPay = (total, percentage, kmpay) =>
-    total - percentage - kmpay;
+  const getTransportPay = (km, m3) => km * 7 * m3 * 0.9;
 
   const getRateDifference = (m, amount1, amount2, amount3) => {
     const totalValue = finalInfo.totalKmPrice * m;
-    console.log("totalValue", totalValue);
     return totalValue - amount1 - amount2 - amount3; //amount1, amount2 y amount3 equivalen al 10% y 0.25 y el acarreo ctm que se restaran para obtener la diferencia de tarifa
   };
 
@@ -85,9 +83,8 @@ export default function ConciliacionesForm() {
         prevFinalInfo.totalKmPrice
       ),
       transportPay: getTransportPay(
-        prevFinalInfo.totalCTM,
-        prevFinalInfo.sutermPercentage,
-        prevFinalInfo.kmPay
+        prevFinalInfo.totalDistance,
+        data.cubicMeters
       ),
       rateDifference: getRateDifference(
         parseInt(data.cubicMeters),
@@ -113,40 +110,7 @@ export default function ConciliacionesForm() {
       totalKmPrice:
         prevFinalInfo.pavementPrice + prevFinalInfo.dirtRoadPrice + 41.58,
     }));
-    // setFinalInfo({
-    //   ...finalInfo,
-    //   totalPrice: getTotalPrice(data.price, data.cubicMeters),
-    //   totalDistance:
-    //     parseInt(data.pavementDistance) + parseInt(data.dirtRoadDistance) + 2,
-    //   totalCTM: getTotalCTM(parseInt(data.cubicMeters)),
-    //   kmPay: getKmPay(finalInfo.totalDistance, parseInt(data.cubicMeters)),
-    //   sutermPercentage: getSutermPercentage(
-    //     parseInt(data.cubicMeters),
-    //     finalInfo.totalKmPrice
-    //   ),
-    //   transportPay: getTransportPay(
-    //     finalInfo.totalCTM,
-    //     finalInfo.sutermPercentage,
-    //     finalInfo.kmPay
-    //   ),
-    //   rateDifference: getRateDifference(
-    //     parseInt(data.cubicMeters),
-    //     finalInfo.sutermPercentage,
-    //     finalInfo.kmPay,
-    //     finalInfo.transportPay
-    //   ),
-    //   materialBank: getMaterialBank(parseInt(data.cubicMeters)),
-    //   utility: getUtility(
-    //     finalInfo.sutermPercentage,
-    //     finalInfo.kmPay,
-    //     finalInfo.transportPay,
-    //     finalInfo.rateDifference,
-    //     finalInfo.materialBank
-    //   ),
-    //   pavementPrice: data.pavementDistance * 7.25,
-    //   dirtRoadPrice: data.dirtRoadDistance * 11.91,
-    //   totalKmPrice: finalInfo.pavementPrice + finalInfo.dirtRoadPrice + 41.58,
-    // });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     data.cubicMeters,
     data.dirtRoadDistance,

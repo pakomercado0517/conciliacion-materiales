@@ -36,7 +36,7 @@ export default function ResultsTable({ data, finalInfo }) {
           <Table.Row className="bg-gray-200">
             {" "}
             <Table.Cell className="font-bold whitespace-nowrap">
-              Precio
+              P.U. Tecnint vendido por M3
             </Table.Cell>
             <Table.Cell className="bg-white">
               {formatNumber.format(data.price)}
@@ -44,7 +44,7 @@ export default function ResultsTable({ data, finalInfo }) {
           </Table.Row>
           <Table.Row className="bg-gray-200">
             <Table.Cell className="font-bold whitespace-nowrap">
-              Pago Total
+              Pago Total de Techint a CTM
             </Table.Cell>
             <Table.Cell className="bg-white">
               {formatNumber.format(finalInfo.totalPrice)}
@@ -52,7 +52,7 @@ export default function ResultsTable({ data, finalInfo }) {
           </Table.Row>
           <Table.Row className="bg-gray-200">
             <Table.Cell className="font-bold whitespace-nowrap">
-              10% acarreo SUTERM
+              10% acarreo sobre la tarifa SUTERM
             </Table.Cell>
             <Table.Cell className="">
               {formatNumber.format(finalInfo.sutermPercentage)}
@@ -70,7 +70,7 @@ export default function ResultsTable({ data, finalInfo }) {
           </Table.Row>
           <Table.Row className="bg-gray-200">
             <Table.Cell className="font-bold whitespace-nowrap">
-              Pago acarreo CTM
+              Pago acarreo a CTM
             </Table.Cell>
             <Table.Cell className="bg-white">
               {formatNumber.format(finalInfo.transportPay)}
